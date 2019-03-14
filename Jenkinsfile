@@ -11,6 +11,8 @@ node('haimaxy-jnlp') {
     }
     stage('Test') {
       echo "2.Test Stage"
+      echo "skip this step,but is not foevery!"
+      echo "add mvn and sonar!"
     }
     stage('Build') {
         echo "3.Build Docker Image Stage"
