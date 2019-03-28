@@ -2,9 +2,9 @@ node('haimaxy-jnlp') {
     stage('Prepare') {
         echo "1.Prepare Stage"
         def date = 20190328
-        echo ${date}
+        echo $date
         def head = "git rev-parse --short HEAD"
-        echo ${head}
+        echo $head
         checkout scm
         script {
             build_tag = sh(returnStdout: true, script: 'echo v$date$head').trim()
