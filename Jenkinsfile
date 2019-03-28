@@ -3,9 +3,9 @@ node('haimaxy-jnlp') {
         echo "1.Prepare Stage"
         checkout scm
         script {
-            _Date = 20190328
-            head = "git rev-parse --short HEAD"
-            build_tag = sh(returnStdout: true, script: 'echo v"$_Date"_$"head"').trim()
+            Date = 20190328
+            Head = "git rev-parse --short HEAD"
+            build_tag = sh(returnStdout: true, script: 'echo v$Date$Head').trim()
             if (env.BRANCH_NAME != 'master') {
                 build_tag = "${env.BRANCH_NAME}-${build_tag}"
             }
