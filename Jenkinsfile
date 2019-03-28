@@ -2,11 +2,10 @@ node('haimaxy-jnlp') {
     stage('Prepare') {
         echo "1.Prepare Stage"
         checkout scm
-        def date = '20190328'
-        echo "$date"
         script {
             build_head = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-            build_tag = "${date}-${build_head}"
+            build_date = sh(returnStdout: true, script: 'date +%Y%m%d%H%M%S').trim()
+            build_tag = "${build_date}-${build_head}"
             if (env.BRANCH_NAME != 'master') {
                 build_tag = "${env.BRANCH_NAME}-${build_tag}"
             }
