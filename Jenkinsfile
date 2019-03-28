@@ -7,7 +7,7 @@ node('haimaxy-jnlp') {
         echo "$head"
         checkout scm
         script {
-            build_tag = sh(returnStdout: true, script: 'echo v$date$head').trim()
+            build_tag = sh(returnStdout: true, script: 'echo v${date}_${head}').trim()
             if (env.BRANCH_NAME != 'master') {
                 build_tag = "${env.BRANCH_NAME}-${build_tag}"
             }
