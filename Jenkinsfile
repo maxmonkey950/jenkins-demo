@@ -4,7 +4,6 @@ node('haimaxy-jnlp') {
         checkout scm
         script {
             _Date = `date +%Y%m%d%H%M%S`
-            rdm=$RANDOM
             head = `git rev-parse --short HEAD`
             build_tag = sh(returnStdout: true, script: 'echo v"$_Date"_$"head"').trim()
 #            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
