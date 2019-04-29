@@ -16,13 +16,13 @@ node('haimaxy-jnlp') {
     }
     stage('Build') {
         echo "3.Build Docker Image Stage"
-        sh "docker build -t maxmonkey950/jenkins-demo:${build_tag} ."
+        sh "docker build -t registry.cn-shenzhen.aliyuncs.com/e6yun/devops-test:${build_tag} ."
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-            sh "docker push maxmonkey950/jenkins-demo:${build_tag}"
+            sh "docker login -u ${alihubUser} -p ${alihubPassword} registry.cn-shenzhen.aliyuncs.com"
+            sh "docker push registry.cn-shenzhen.aliyuncs.com/e6yun/devops-test:${build_tag}"
         }
     }
     stage('Deploy') {
