@@ -1,4 +1,12 @@
-node('haimaxy-jnlp') {
+def label = "slave-${UUID.randomUUID().toString()}"
+
+podTemplate(label: label, name: 'jnlp', namespace: 'kube-ops',   containers: [
+  containerTemplate(name: 'jnlp', image: 'cnych/jenkins:jnlp', diectory: '/home/jenkins', namespace: 'kube-ops')
+], volumes: [
+  hostPathVolume(mountPath: '/home/jenkins/.kube', hostPath: '/root/.kube'),
+  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+])
+node('lable') {
     stage('Prepare') {
         echo "1.Prepare Stage"
         checkout scm
